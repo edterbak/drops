@@ -14,6 +14,7 @@ This build:</br>
 - Uses voice command to open/close cave: (Alexa/Google > webhook > node red)</br>
 </br>
 </br>
+
 ### Components used
 <b>Actuator:</b></br>
 type: 180N 50mm per second, 150mm stroke</br>
@@ -49,12 +50,140 @@ link: https://www.mijnijzerwaren.nl/hang-en-sluitwerk/46262-klepbeslag-links-m-v
 </br>
 </br>
 Total price: 94.80 Euro
-
-
+</br>
 
 design, wood, hinge
-Ellecrical Wiring
-programming
+
+### Ellecrical Wiring
+![Schema](https://github.com/edterbak/drops/blob/main/Bob/2023-01-06%2021_43_18-Drawing3.vsdx.png?raw=true).
+</br>
+
+### programming
+Below is the code flashed into the 4ch relay board, using ESP-Home. </br>
+The trigger to open the door is received through MQTT topic. </br>
+- esp01relay/switch/relay_1/state (value "OPEN"/"CLOSE")</br>
+- esp01relay/switch/relay_2/state (value "OPEN"/"CLOSE")</br>
+</br>
+After the trigger has been received, it executes the open/close sequences.</br>
+- close relay </br>
+- wait 5 seconds</br>
+- open relay again. </br>
+This for both relays, only relay 1 is used to power actuator for opening, relay 2 is for closing.</br>
+</br>
+
+```
+esphome:
+  name: esp01relay
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: "xxxxx"
+  password: "xxxxxx"
+  manual_ip:
+    static_ip: x.x.x.x
+    gateway: x.x.x.x
+    subnet: 255.255.255.0
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+#api:
+#  password: "xx"
+
+ota:
+#  password: "xx"
+
+mqtt:
+  broker: x.x.x.x
+  username: "x"
+  password: "x"
+  on_message:
+    - topic: esp01relay/switch/relay_1/state
+      payload: "OPEN"
+#      qos: 0
+#      retain: false
+      then:
+        - switch.turn_on: relay1
+    - topic: esp01relay/switch/relay_2/state
+      payload: "CLOSE"
+#      qos: 0
+#      retain: false
+      then:
+        - switch.turn_on: relay2
+
+# Sensors with general information. Nice to have
+sensor:
+  # Uptime sensor.
+  - platform: uptime
+    name: Relay Uptime
+
+#  # WiFi Signal sensor. (Optional)
+#  - platform: wifi_signal
+#    name: Relay WiFi Signal
+#    update_interval: 60s
+
+uart: # Defines the communication to the relayboard
+  baud_rate: 115200 # speed to STC15L101EW
+  tx_pin: GPIO1
+  rx_pin: GPIO3
+
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+# reference for switches on relay board!
+#      - uart.write: [0xA0, 0x01, 0x01, 0xA2] # 1 ON: close connection
+#      - uart.write: [0xA0, 0x01, 0x00, 0xA1] # 1 OFF: open connection
+#
+#      - uart.write: [0xA0, 0x02, 0x01, 0xA3] # 2 ON: close connection
+#      - uart.write: [0xA0, 0x02, 0x00, 0xA2] # 2 OFF: open connection
+#
+#      - uart.write: [0xA0, 0x03, 0x01, 0xA4] # 3 
+#      - uart.write: [0xA0, 0x03, 0x00, 0xA3] # 3 
+#
+#      - uart.write: [0xA0, 0x04, 0x01, 0xA5] # 4 
+#      - uart.write: [0xA0, 0x04, 0x00, 0xA4] # 4 
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+
+switch: # Optional extra switch to restart the board.
+  - platform: restart
+    name: esp01relay-restart
+    id: restart_switch
+
+#------------------------------------------------------------------------------
+# Relay 1: This relay is used to open the door
+# The sequence of switching is defined here.
+  - platform: template
+    name: 'Relay 1' # ON/OFF 
+    id: relay1
+    turn_on_action:
+      - uart.write: [0xA0, 0x01, 0x01, 0xA2] # 1 ON switch
+      - delay: 5s
+      - switch.turn_off: relay1
+      - uart.write: [0xA0, 0x01, 0x00, 0xA1] # 1 OFF switch
+    turn_off_action:
+      - uart.write: [0xA0, 0x01, 0x00, 0xA1] # 1 OFF switch
+    optimistic: true
+    restore_state: false
+
+#------------------------------------------------------------------------------
+# Relay 2: This relay is used to close the door
+# The sequence of switching is defined here.
+  - platform: template
+    name: 'Relay 2' # ON/OFF  
+    id: relay2
+    optimistic: true
+    restore_state: false
+    turn_on_action:
+      - uart.write: [0xA0, 0x02, 0x01, 0xA3] # 2 ON switch
+      - delay: 5s
+      - switch.turn_off: relay2
+      - uart.write: [0xA0, 0x02, 0x00, 0xA2] # 2 OFF switch
+    turn_off_action:
+      - uart.write: [0xA0, 0x02, 0x00, 0xA2] # 2 OFF switch
+
+```
 
 
  
