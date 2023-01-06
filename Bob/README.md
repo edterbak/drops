@@ -2,6 +2,18 @@
 I have created a nice place for Bob, our roborock s5 max cleaner. </br>
 </br>
 
+![Bob cave](https://github.com/edterbak/drops/blob/main/Bob/bob_cave1.png?raw=true).
+</br>
+This build:</br>
+- Includes 2 buttons which ALWAYS allows you to open/close the hatch. Even without internet. (You only need power ofcourse)</br>
+- Includes relay board (wifi) so you can control it remote/ automated.</br>
+- Includes pwm module so you can set your prefered speed to open/close the cave.</br>
+- is idiot proof in control. wifi signal open/close together with manual buttons open/close wont kill it.</br>
+- is idiot proof in control. pushing open/close at the same time wont kill it.</br>
+- Relay board controlled through wifi (MQTT) through ESP-Home. </br>
+- Uses voice command to open/close cave: (Alexa/Google > webhook > node red)</br>
+</br>
+</br>
 ### Components used
 <b>Actuator:</b></br>
 type: 180N 50mm per second, 150mm stroke</br>
