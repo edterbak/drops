@@ -41,6 +41,7 @@ https://nl.aliexpress.com/item/4001084228258.html?spm=a2g0o.order_list.order_lis
 </br>
 <b>PWM motor regulator:</b></br>
 price: 4.33 Euro</br>
+Note: this little unit comes with 2 nice buttons to mount next to the door. </br>
 https://nl.aliexpress.com/item/32963777534.html?spm=a2g0o.order_list.order_list_main.35.221d79d2QEp7vz&gatewayAdapt=glo2nld
 </br>
 </br>
