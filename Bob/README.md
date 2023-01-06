@@ -56,12 +56,30 @@ link: https://www.mijnijzerwaren.nl/hang-en-sluitwerk/46262-klepbeslag-links-m-v
 Total price: 94.80 Euro
 </br>
 
-design, wood, hinge
-
+### Design
+Make sure you know how much space you need for the robot. </br>
+Include the charger, assume the robot is on the charger. </br>
+That total length combined with the hight of the cleaner, is what you need to know befor you deside if you open the door inward or outward. </br>
+In my case, I could not 'pull' the door open inward, because that would not fit with the cleaner behind it. </br>
+</br>
+If the door opens outward, choose the correct hinge. If the cabinet is directly above the opening door, and can not go higher, you need to choose the right hinge to alow such movement. </br>
+</br>
+Choose the correct actuator stroke-length.</br>
+If it is too short, the door wont be opened/closed fully.</br>
+If it is too long, the door is closed while the actuator is not at its end yet. </br>
+Idealy, you want the fully extended actuator connected to the opened door position.</br>
+To solve a too large closing stroke, I used an limit-switch to prevent it killing itself. </br>
+Note: Actuators are very powerfull. If the closing stroke is not done or interupted when the door is closed, it will simply pull something off to close. It is very forcefull. </br> 
+</br>
 ### Ellecrical Wiring
 ![Schema](https://github.com/edterbak/drops/blob/main/Bob/2023-01-06%2021_43_18-Drawing3.vsdx.png?raw=true).
 </br>
+putting the power supply and 4CH relayboard on a solid piece of wood.</br>
 
+<img src="https://github.com/edterbak/drops/blob/main/Bob/IMG-20211013-WA0018.jpg?raw=true" height="300">
+
+
+</br></br>
 ### programming
 Below is the code flashed into the 4ch relay board, using ESP-Home. </br>
 The trigger to open the door is received through MQTT topic. </br>
@@ -188,10 +206,4 @@ switch: # Optional extra switch to restart the board.
       - uart.write: [0xA0, 0x02, 0x00, 0xA2] # 2 OFF switch
 
 ```
-
-
- 
-
-
-
 </br>
