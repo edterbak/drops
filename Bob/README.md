@@ -77,7 +77,7 @@ Note: Actuators are very powerfull. If the closing stroke is not done or interup
 putting the power supply and 4CH relayboard on a solid piece of wood.</br>
 
 <img src="https://github.com/edterbak/drops/blob/main/Bob/IMG-20211013-WA0018.jpg?raw=true" height="300">
-
+Note that the wire color coding is incorrect. But this is what I had available. (Should be black/red)
 
 </br></br>
 ### programming
