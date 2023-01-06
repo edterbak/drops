@@ -38,6 +38,7 @@ https://nl.aliexpress.com/item/1005001701734198.html?spm=a2g0o.order_list.order_
 </br>
 <b>4ch-relay board:</b></br>
 price: 12.55 Euro</br>
+Note: 2CH would be sufficient. I intend to use the other 2 for some cool 12V light effects inside the 'cave'. </br>
 https://nl.aliexpress.com/item/4001084228258.html?spm=a2g0o.order_list.order_list_main.30.221d79d2QEp7vz&gatewayAdapt=glo2nld
 </br>
 </br>
