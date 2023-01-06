@@ -12,7 +12,9 @@ This build:</br>
 - is idiot proof in control. pushing open/close at the same time wont kill it.</br>
 - Relay board controlled through wifi (MQTT) through ESP-Home. </br>
 - Uses voice command to open/close cave: (Alexa/Google > webhook > node red)</br>
-</br>
+</br></br>
+See below a movie how it functions and responds after asking alexa to show bob.</br>
+https://github.com/edterbak/drops/raw/main/VID20220101143654.mp4
 </br>
 
 ### Components used
