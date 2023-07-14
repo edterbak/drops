@@ -210,3 +210,6 @@ switch: # Optional extra switch to restart the board.
 
 https://github.com/edterbak/drops/blob/main/Bob/IMG20230304103959.jpg?raw=true
 ![Actuator with limit-switch](https://github.com/edterbak/drops/blob/main/Bob/IMG20230304103959.jpg?raw=true).
+</br></br>
+![PWM board connected](https://github.com/edterbak/drops/blob/main/Bob/IMG20230304104559.jpg?raw=true).
+</br>
