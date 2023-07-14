@@ -212,4 +212,7 @@ switch: # Optional extra switch to restart the board.
 Actuator with limit-switch on the inside of the hatch</br></br>
 ![PWM board connected](https://github.com/edterbak/drops/blob/main/Bob/IMG20230304104559.jpg?raw=true)
 Connection to the PWM board. Including the limit switch.</br>
-The PWM board has two manual buttons. I have put the limit-switch between one of the plug <-> button lines.
+The PWM board has a power supply on the top, the green connectors. <br>
+The PWM board has a POT knob. This is the white connector on the bottom LEFT.<br>
+The PWM board has two manual buttons. Those are the two white connectors on the bottom RIGHT. <br>
+I have put the limit-switch between one of the plug <-> button lines.
